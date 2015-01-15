@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import javax.annotation.Resource;
 
+import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
@@ -36,6 +39,10 @@ public class UserUtils implements InitializingBean {
 	private HBaseAdmin admin;
 
 	public void initialize() throws IOException {
+
+    config.set("hadoop.security.authentication", "Kerberos");
+    UserGroupInformation.setConfiguration(config);
+    UserGroupInformation.loginUserFromKeytab("tpv_np@CORP.PREMIERINC.COM", "/export/home/tpv_np/tpv_np.keytab");
 
 		if (admin.tableExists(tableNameAsBytes)) {
 			if (!admin.isTableDisabled(tableNameAsBytes)) {

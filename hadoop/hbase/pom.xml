@@ -15,9 +15,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.hadoop.version>1.0.0.RELEASE</spring.hadoop.version>
+		<spring.hadoop.version>2.0.4.RELEASE</spring.hadoop.version>
 		<hadoop.version>1.0.1</hadoop.version>
-		<hbase.version>0.92.1</hbase.version>
+		<hbase.version>0.98.6-cdh5.2.1</hbase.version>
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
 
@@ -45,23 +45,27 @@
 			<version>${spring.version}</version>
 		</dependency>		
 		
+    <!--
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
 			<version>${hadoop.version}</version>
 			<scope>compile</scope>
 		</dependency>
+  -->
 
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
-			<artifactId>hbase</artifactId>
+			<artifactId>hbase-client</artifactId>
 			<version>${hbase.version}</version>
 			<scope>compile</scope>
 			<exclusions>
+        <!--
 				<exclusion>
 					<groupId>log4j</groupId>
 					<artifactId>log4j</artifactId>
 				</exclusion>
+      -->
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-log4j12</artifactId>
